@@ -244,14 +244,6 @@ git commit --no-verify -m "快速修复"
 
 ## 数据库连接
 
-### 使用 Adminer 管理（推荐）
-
-访问 http://localhost:8080，输入：
-- Server: `db`
-- Username: `postgres`
-- Password: `.env` 中的 `POSTGRES_PASSWORD`
-- Database: `app`
-
 ### 使用数据库工具连接（Navicat / DBeaver）
 
 - Host: `localhost`
