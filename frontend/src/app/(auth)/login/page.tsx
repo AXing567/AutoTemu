@@ -18,19 +18,26 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
+      console.log("[Login Page] Attempting login with email:", email);
       const result = await signIn("credentials", {
         username: email,
         password,
         redirect: false,
       });
 
+      console.log("[Login Page] SignIn result:", result);
+
       if (result?.error) {
+        console.error("[Login Page] SignIn error:", result.error);
         toast.error(result.error || "登录失败");
       } else if (result?.ok) {
         toast.success("登录成功");
         router.push("/dashboard");
+      } else {
+        toast.error("登录失败，请重试");
       }
     } catch (error) {
+      console.error("[Login Page] Exception:", error);
       toast.error("登录失败，请检查邮箱和密码");
     } finally {
       setIsLoading(false);
