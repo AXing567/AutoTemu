@@ -7,8 +7,11 @@ on:
 
 jobs:
   deploy:
-    # Do not deploy in the main repository, only in user projects
-    if: github.repository_owner != 'fastapi'
+    # Only deploy when pushed to your own repository
+    # (not the original fastapi/full-stack-fastapi-template repository)
+    # Requires: self-hosted GitHub Actions runner with label 'staging'
+    # and configured environment secrets (DOMAIN_STAGING, STACK_NAME_STAGING, etc.)
+    if: github.repository_owner != 'tiangolo'
     runs-on:
       - self-hosted
       - staging
