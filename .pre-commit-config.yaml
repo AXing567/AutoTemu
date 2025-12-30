@@ -20,22 +20,25 @@ repos:
   - repo: local
     hooks:
       - id: local-biome-check
-        name: biome check
-        entry: bash -c 'cd frontend && npm run lint'
+        name: eslint check
+        entry: cmd /c "cd frontend && npm run lint"
         language: system
         types: [text]
         files: ^frontend/
+        pass_filenames: false
 
       - id: local-ruff-check
         name: ruff check
-        entry: uv run ruff check --force-exclude --fix --exit-non-zero-on-fix
+        entry: cmd /c "cd backend && uv run ruff check --force-exclude --fix"
         require_serial: true
-        language: unsupported
+        language: system
         types: [python]
+        pass_filenames: false
 
       - id: local-ruff-format
         name: ruff format
-        entry: uv run ruff format --force-exclude --exit-non-zero-on-format
+        entry: cmd /c "cd backend && uv run ruff format --force-exclude"
         require_serial: true
-        language: unsupported
+        language: system
         types: [python]
+        pass_filenames: false

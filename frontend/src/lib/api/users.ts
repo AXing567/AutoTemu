@@ -1,6 +1,14 @@
 import { apiClient, getAuthToken } from "./client";
 import { extractErrorMessage } from "./utils";
 
+interface CreateUserRequest {
+  email: string;
+  password: string;
+  full_name?: string;
+  is_active?: boolean;
+  is_superuser?: boolean;
+}
+
 /**
  * 获取用户列表
  */
@@ -88,14 +96,16 @@ export async function createUser(
     throw new Error("未登录");
   }
 
+  const body: CreateUserRequest = {
+    email,
+    password,
+    full_name: fullName,
+    is_active: isActive,
+    is_superuser: isSuperuser,
+  };
+
   const { data, error } = await apiClient.POST("/api/v1/users/", {
-    body: {
-      email,
-      password,
-      full_name: fullName,
-      is_active: isActive,
-      is_superuser: isSuperuser,
-    } as any,
+    body,
     headers: {
       Authorization: token,
     },
@@ -156,7 +166,7 @@ export async function updateUser(
     params: {
       path: { user_id: userId },
     },
-    body: updates as any,
+    body: updates,
     headers: {
       Authorization: token,
     },

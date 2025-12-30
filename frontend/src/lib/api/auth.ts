@@ -6,10 +6,10 @@ import { extractErrorMessage } from "./utils";
  */
 export async function loginUser(email: string, password: string) {
   const { data, error } = await apiClient.POST("/api/v1/login/access-token", {
-    body: new URLSearchParams({
+    body: {
       username: email,
       password,
-    }) as any,
+    },
   });
 
   if (error) {

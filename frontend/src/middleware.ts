@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // 超级管理员路由检查
-  const isSuperuser = (session.user as any)?.is_superuser || false;
+  const isSuperuser = session.user?.is_superuser || false;
   if (pathname.startsWith("/users") && !isSuperuser) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }

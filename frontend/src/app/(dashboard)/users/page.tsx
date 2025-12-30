@@ -30,7 +30,7 @@ interface User {
 export default function UsersPage() {
   const session = useSession();
   const router = useRouter();
-  const isSuperuser = (session?.data?.user as any)?.is_superuser;
+  const isSuperuser = session?.data?.user?.is_superuser ?? false;
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
