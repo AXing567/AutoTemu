@@ -61,7 +61,7 @@
     "vitest": "^1.1.0",
     "@vitest/ui": "^1.1.0",
     "@vitest/coverage-v8": "^1.1.0",
-    "jsdom": "^23.0.1",
+    "jsdom": "^27.4.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/jest-dom": "^6.1.5",
     "playwright": "^1.40.1",
