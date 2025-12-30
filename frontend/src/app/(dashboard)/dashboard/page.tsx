@@ -5,15 +5,17 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
-  const { data: session } = useSession();
+  const session = useSession();
   const router = useRouter();
+
+  const sessionData = session?.data;
 
   return (
     <div className="space-y-6 p-6">
       <div className="rounded-lg bg-white p-6 shadow">
-        <h1 className="text-3xl font-bold">欢迎，{session?.user?.name}！</h1>
-        <p className="mt-2 text-slate-600">邮箱: {session?.user?.email}</p>
-        {session?.user?.is_superuser && (
+        <h1 className="text-3xl font-bold">欢迎，{sessionData?.user?.name}！</h1>
+        <p className="mt-2 text-slate-600">邮箱: {sessionData?.user?.email}</p>
+        {(sessionData?.user as any)?.is_superuser && (
           <p className="mt-1 text-sm text-blue-600">• 超级管理员</p>
         )}
       </div>
@@ -22,7 +24,7 @@ export default function DashboardPage() {
         <div className="rounded-lg bg-white p-6 shadow">
           <h2 className="text-lg font-semibold">快捷入口</h2>
           <div className="mt-4 space-y-2">
-            {session?.user?.is_superuser && (
+            {(sessionData?.user as any)?.is_superuser && (
               <Button
                 variant="outline"
                 onClick={() => router.push("/users")}
