@@ -148,6 +148,14 @@ pnpm install
 pnpm dev
 ```
 
+**终端 3 - 启动浏览器扩展：**
+```bash
+cd extension
+pnpm install
+pnpm dev
+```
+
+
 5. **访问应用**
 
 - 前端: http://localhost:3000
