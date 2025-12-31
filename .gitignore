@@ -25,6 +25,9 @@ node_modules/
 /frontend/dist/
 /frontend/build/
 
+# TypeScript
+*.tsbuildinfo
+
 # OS
 .DS_Store
 Thumbs.db
